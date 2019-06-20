@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   jupyterhub:
@@ -7,15 +7,18 @@ services:
     container_name: jupyterhub
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - jupyterhub_data:/volatile/jupyterhub
+      - jupyterhub-data:/volatile/docker
     environment:
       DOCKER_JUPYTER_CONTAINER: jupyterlab_img
-      DOCKER_NETWORK_NAME: ${COMPOSE_PROJECT_NAME}_default
+      #DOCKER_JUPYTER_CONTAINER: testimage
+      DOCKER_NETWORK_NAME: ${COMPOSE_PROJECT_NAME}-network
       HUB_IP: jupyterhub
     labels:
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:jupyter.ens.uvsq.fr"
+      - "traefik.frontend.rule=Host:is228931.intra.cea.fr"
     restart: on-failure
+    #networks:
+    #  - ${COMPOSE_PROJECT_NAME}-network
 
   jupyterlab:
     build: jupyterlab
@@ -33,7 +36,7 @@ services:
       - "8080:8080"
     volumes:
       - ./reverse-proxy/traefik.toml:/etc/traefik/traefik.toml
-      - /etc/ssl:/etc/ssl
+      - /etc/ssl/jupyterhub:/etc/ssl/jupyterhub
       - /var/run/docker.sock:/var/run/docker.sock
     restart: on-failure
 
@@ -48,4 +51,14 @@ services:
 #    restart: on-failure
 
 volumes:
-  jupyterhub_data:
+  jupyterhub-data:
+#  data:
+#    external:
+#      name: ${COMPOSE_PROJECT_NAME}-data
+
+networks:
+  default:
+    external:
+      name: ${COMPOSE_PROJECT_NAME}-network
+#  jupyterhub-network:
+#    driver: bridge

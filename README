@@ -1,1 +1,7 @@
+docker network create jupyterhub-network
+docker volume create --name jupyterhub-data
+docker-compose up
+docker-compose down
+
+https://github.com/jupyterhub/jupyterhub-deploy-docker
 https://opendreamkit.org/2018/10/17/jupyterhub-docker/

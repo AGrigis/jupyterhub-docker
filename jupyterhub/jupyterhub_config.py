@@ -27,9 +27,7 @@ c.Spawner.default_url = '/lab'
 
 c.JupyterHub.authenticator_class =  'jupyterhub.auth.DummyAuthenticator'
 c.DummyAuthenticator.password = "nsap"
-
 c.Authenticator.admin_users = { 'a' }
-
 
 ## Docker spawner
 import os
@@ -48,7 +46,7 @@ c.DockerSpawner.volumes = { 'jupyterhub-user-{username}': notebook_dir }
 
 # Other stuff
 c.Spawner.cpu_limit = 1
-c.Spawner.mem_limit = '10G'
+c.Spawner.mem_limit = '2G'
 
 
 ## Services

@@ -12,8 +12,8 @@ defaultEntryPoints = ["https","http"]
   address = ":443"
     [entryPoints.https.tls]
       [[entryPoints.https.tls.certificates]]
-      certFile = "/etc/ssl/private/ssl-cert-snakeoil.pem"
-      keyFile = "/etc/ssl/certs/ssl-cert-snakeoil.key"
+      certFile = "/etc/ssl/jupyterhub/ssl-cert-snakeoil.pem"
+      keyFile = "/etc/ssl/jupyterhub/ssl-cert-snakeoil.key"
 
 [docker]
 domain = "docker.local"

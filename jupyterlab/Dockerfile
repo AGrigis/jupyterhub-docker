@@ -44,7 +44,7 @@ RUN conda install --quiet --yes \
     'r-sparklyr=0.7*' \
     'r-htmlwidgets=1.0*' \
     'r-hexbin=1.27*' \
-    'jupyterhub' \
+    'jupyterhub==1.0.0' \
 #    'sage=8.*' \
     'julia=1.0*' && \
     conda clean -tipsy && \
